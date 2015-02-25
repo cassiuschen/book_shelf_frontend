@@ -1,0 +1,19 @@
+{
+  "name": "BookShelf",
+  "version": "0.1.0",
+  "authors": [
+    "cassiuschen <chzsh1995@gmail.com>"
+  ],
+  "description": "The FrontEnd for a personal library.",
+  "main": "[\"public/assets/css/application.css\", \"public/assets/js/application.js\", \"public/assets/js/controller.js\", \"public/assets/js/services.js\"]",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "angular": "~1.3.13",
+    "angular-cookies": "~1.3.13",
+    "angular-route": "~1.3.13",
+    "angular-resource": "~1.3.13",
+    "angular-sanitize": "~1.3.13",
+    "jquery": "~2.1.3"
+  }
+}
