@@ -1,5 +1,20 @@
-<ion-view view-title="首页"><ion-content class="padding">
-    <p>
-      {{test}}
-    </p>
+<ion-view view-title="首页"><ion-content><ion-refresher on-refresh="doRefresh()"></ion-refresher>
+    <div class="card list" ng-repeat="book in books">
+      <ion-item class="item item-avatar"><img src="{{book.images.small}}" />
+        <h2>
+          《{{book.title}}》
+        </h2>
+        <p>
+          <span class="subdued" ng-repeat="person in book.author">{{person}}</span>
+        </p>
+      </ion-item>
+      <div class="item item-body">
+        <p>
+          {{(book.summary.length > 200)?(book.summary.substring(0,180) + '...'):(book.summary)}}
+        </p>
+      </div>
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" href="#/tab/detail/2"><i class="icon ion-document-text"></i>详细信息</a><a class="tab-item" href="#/tab/douban/2"><i class="icon ion-document-text"></i>豆瓣评价</a><a class="tab-item" href="#/tab/app/2"><i class="icon ion-document-text"></i>申请借阅</a>
+      </div>
+    </div>
   </ion-content></ion-view>

@@ -141,7 +141,7 @@ gulp.task('server', [ 'generate' ], function() {
 });
 
 gulp.task('open', function () {
-    return gulp.src('public/index.html').pipe(open('', { url: 'http://localhost:8080' }));
+    return gulp.src('public/index.html').pipe(open('', { url: 'http://0.0.0.0:8080' }));
 });
 
 gulp.task('build', ['generate'], function() {

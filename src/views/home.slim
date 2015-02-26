@@ -1,4 +1,26 @@
 ion-view view-title="首页"
-	ion-content.padding
-		p
-			| {{test}}
+  ion-content
+    ion-refresher on-refresh="doRefresh()"
+    .card.list ng-repeat="book in books"
+      ion-item.item.item-avatar
+        img src="{{book.images.small}}"
+        h2
+          | 《{{book.title}}》
+        p
+          span.subdued ng-repeat="person in book.author"
+            | {{person}}
+      .item.item-body
+        p
+          | {{(book.summary.length > 200)?(book.summary.substring(0,180) + '...'):(book.summary)}}
+      .item.tabs.tabs-secondary.tabs-icon-left.
+        a.tab-item href="#/tab/detail/2"
+          i.icon.ion-document-text
+          | 详细信息
+        a.tab-item href="#/tab/douban/2"
+          i.icon.ion-document-text
+          | 豆瓣评价
+        a.tab-item href="#/tab/app/2"
+          i.icon.ion-document-text
+          | 申请借阅
+
+
