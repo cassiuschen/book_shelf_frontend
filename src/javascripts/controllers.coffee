@@ -1,26 +1,36 @@
 window.ionicApp
 	.controller 'HomeController', [
 		'$scope',
+		'$http',
 		'$ionicLoading',
 		'$timeout',
-		($s, $loading, $timeout) ->
+		($s, $http, $loading, $timeout) ->
 			$s.test = "Test is success!"
 
-			$s.rawData = window.TestData
-			$s.books = $s.rawData.books
+			$s.data = {}
+
+			$s.clearSearch = ->
+				$s.data.searchQuery = ''
 
 			$s.doRefresh = ->
 				$s.showLoading()
-				$timeout ->
-						$s.hideLoading()
-						$s.$broadcast('scroll.refreshComplete')
-					, 1000
+				$http
+					method: 'GET'
+					url: "#{window.ApiBaseUrl}books.json"
+					isArray: true
+				.success (data) ->
+					$s.books = data
+					$s.hideLoading()
+					$s.$broadcast('scroll.refreshComplete')
+
 			$s.showLoading = ->
 				$loading.show
 					template: '加载中'
 
 			$s.hideLoading = ->
 				$loading.hide()
+
+			$s.doRefresh()
 	]
 
 	.controller 'BookDetailController', [

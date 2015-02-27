@@ -1,26 +1,39 @@
-ion-view view-title="首页"
+ion-view view-title="书架"
   ion-content
     ion-refresher on-refresh="doRefresh()"
-    .card.list ng-repeat="book in books"
+    ion-list
+      ion-item.item-input-inset.bar.bar-header
+        label.item-input-wrapper
+          i.ion-ios7-search.placeholder-icon
+          input type="text" placeholder="搜索..." ng-model="data.searchQuery"
+          i.clear-search.icon.ion-ios7-close-empty ng-click="clearSearch()"
+        ion-button.button-clear 清空
+    .card.list ng-repeat="book in books | filter: data.searchQuery"
       ion-item.item.item-avatar
-        img src="{{book.images.small}}"
+        img src="{{book.image}}"
         h2
           | 《{{book.title}}》
         p
-          span.subdued ng-repeat="person in book.author"
-            | {{person}}
+          span.subdued
+            | {{book.author.join(' / ')}}
       .item.item-body
         p
           | {{(book.summary.length > 200)?(book.summary.substring(0,180) + '...'):(book.summary)}}
-      .item.tabs.tabs-secondary.tabs-icon-left.
+        p
+          span.subdued ng-repeat="tag in book.tags"
+            i.ion-ios-pricetags-outline
+            |  
+            | {{tag.title}}
+            |  
+      .item.tabs.tabs-secondary.tabs-icon-left
         a.tab-item href="#/tab/detail/2"
           i.icon.ion-document-text
-          | 详细信息
+          |  详细信息
         a.tab-item href="#/tab/douban/2"
-          i.icon.ion-document-text
-          | 豆瓣评价
+          i.icon.ion-ios-chatboxes-outline
+          |  查看评价
         a.tab-item href="#/tab/app/2"
-          i.icon.ion-document-text
-          | 申请借阅
+          i.icon.ion-clipboard
+          |  申请借阅
 
 
