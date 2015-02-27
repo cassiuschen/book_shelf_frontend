@@ -3,8 +3,5 @@
 /.sass-cache
 /node_modules
 /cache
-/public/assets/css/*.css
-/public/assets/css/*.map
-/public/assets/js/*
 
 /vendor/assets

@@ -2,7 +2,7 @@ window.ionicApp = angular.module 'BookShelf', [
 	'ionic'
 ]
 
-window.ApiBaseUrl = "http://localhost:3000/api/"
+window.ApiBaseUrl = "http://lib.cassiuschen.me/api/"
 
 window.ionicApp.config(["$httpProvider", (provider) ->
 	provider.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
