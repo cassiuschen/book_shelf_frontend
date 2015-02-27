@@ -10,6 +10,22 @@ window.ionicApp.config([
   }
 ]);
 
+window.ionicApp.run([
+  '$rootScope', '$http', '$ionicLoading', '$timeout', function($s, $http, $loading, $timeout) {
+    $s.showLoading = function(text) {
+      if (text == null) {
+        text = "加载中";
+      }
+      return $loading.show({
+        template: text
+      });
+    };
+    return $s.hideLoading = function() {
+      return $loading.hide();
+    };
+  }
+]);
+
 window.ionicApp.config([
   '$stateProvider', '$urlRouterProvider', function($state, $url) {
     $state.state('tabs', {
@@ -25,7 +41,7 @@ window.ionicApp.config([
         }
       }
     }).state('tabs.detail', {
-      url: '/detail/:BookId',
+      url: '/home/detail/:BookId',
       views: {
         'home-tab': {
           templateUrl: "../../detail.html",

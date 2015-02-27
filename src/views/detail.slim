@@ -1,3 +1,58 @@
-ion-view view-title="{{text}}"
+ion-view view-title="详细信息"
   ion-content
-    img.full-width src="{{info.books[0].images.large}}"
+    ion-list
+      ion-item.item-thumbnail-left
+        img src="{{book.images.large}}"
+        h2
+          | {{book.title}}
+        p
+          | {{book.author.join(' / ')}}
+        p
+          a style="margin-right:2px" ng-repeat="heart in rating_up"
+            i.ion-ios-heart.assertive
+          |  
+          a style="margin-right:2px" ng-repeat="heart in rating_down"
+            i.ion-ios-heart-outline.assertive
+          |     
+      ion-item.item-icon-left
+        i.icon.ion-ios-people
+        | 出版社
+        span.item-note
+          | {{book.publisher}}
+      ion-item.item-icon-left
+        i.icon.ion-ios-book
+        | 页数
+        span.item-note
+          | {{book.pages}}
+      ion-item.item-divider
+        | 简介
+      ion-item.item-text-wrap
+        p
+          | {{book.summary}}
+      ion-item.item-icon-left
+        i.icon.ion-ios-barcode
+        | ISBN
+        span.item-note
+          | {{book.isbn13}}
+      ion-item.item-icon-left
+        i.icon.ion-ios-clock
+        | 出版日期
+        span.item-note
+          | {{book.pubdate}}
+      ion-item.item-icon-left
+        i.icon.ion-cash
+        | 定价
+        span.item-note
+          | {{book.price}}
+      ion-item.item-divider
+        | 借阅信息
+      ion-item.item-icon-left
+        i.icon.ion-ios-glasses-outline
+        | 借阅状态
+        span.item-note
+          | {{book.status}}
+      ion-item.item-icon-left
+        i.icon.ion-ios-bookmarks
+        | 被借次数
+        span.item-note
+          | {{book.times}}

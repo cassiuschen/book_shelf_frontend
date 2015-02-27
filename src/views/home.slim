@@ -1,6 +1,6 @@
 ion-view view-title="书架"
   ion-content
-    ion-refresher on-refresh="doRefresh()"
+    ion-refresher on-refresh="doRefresh()" pulling-text="下拉以更新数据" pulling-icon="ion-arrow-down-c" refreshing-text="更新中..." refreshing-icon="ion-load-c"
     ion-list
       ion-item.item-input-inset.bar.bar-header
         label.item-input-wrapper
@@ -14,26 +14,26 @@ ion-view view-title="书架"
         h2
           | 《{{book.title}}》
         p
-          span.subdued
+          a.subdued
             | {{book.author.join(' / ')}}
       .item.item-body
         p
           | {{(book.summary.length > 200)?(book.summary.substring(0,180) + '...'):(book.summary)}}
         p
-          span.subdued ng-repeat="tag in book.tags"
+          a.subdued ng-repeat="tag in book.tags"
             i.ion-ios-pricetags-outline
             |  
             | {{tag.title}}
             |  
       .item.tabs.tabs-secondary.tabs-icon-left
-        a.tab-item href="#/tab/detail/2"
+        a.tab-item href="#/tab/home/detail/{{book.isbn13}}"
           i.icon.ion-document-text
           |  详细信息
         a.tab-item href="#/tab/douban/2"
           i.icon.ion-ios-chatboxes-outline
           |  查看评价
         a.tab-item href="#/tab/app/2"
-          i.icon.ion-clipboard
+          i.icon.icon.ion-clipboard
           |  申请借阅
 
 

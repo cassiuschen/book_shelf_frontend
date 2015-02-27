@@ -1,1 +1,15 @@
-<ion-view view-title="{{text}}"><ion-content><img class="full-width" src="{{info.books[0].images.large}}" /></ion-content></ion-view>
+<ion-view view-title="详细信息"><ion-content><ion-list><ion-item class="item-thumbnail-left"><img src="{{book.images.large}}" />
+        <h2>
+          {{book.title}}
+        </h2>
+        <p>
+          {{book.author.join(' / ')}}
+        </p>
+        <p>
+          <a ng-repeat="heart in rating_up" style="margin-right:2px"><i class="ion-ios-heart assertive"></i></a> <a ng-repeat="heart in rating_down" style="margin-right:2px"><i class="ion-ios-heart-outline assertive"></i></a>    
+        </p>
+      </ion-item><ion-item class="item-icon-left"><i class="icon ion-ios-people"></i>出版社<span class="item-note">{{book.publisher}}</span></ion-item><ion-item class="item-icon-left"><i class="icon ion-ios-book"></i>页数<span class="item-note">{{book.pages}}</span></ion-item><ion-item class="item-divider">简介</ion-item><ion-item class="item-text-wrap">
+        <p>
+          {{book.summary}}
+        </p>
+      </ion-item><ion-item class="item-icon-left"><i class="icon ion-ios-barcode"></i>ISBN<span class="item-note">{{book.isbn13}}</span></ion-item><ion-item class="item-icon-left"><i class="icon ion-ios-clock"></i>出版日期<span class="item-note">{{book.pubdate}}</span></ion-item><ion-item class="item-icon-left"><i class="icon ion-cash"></i>定价<span class="item-note">{{book.price}}</span></ion-item><ion-item class="item-divider">借阅信息</ion-item><ion-item class="item-icon-left"><i class="icon ion-ios-glasses-outline"></i>借阅状态<span class="item-note">{{book.status}}</span></ion-item><ion-item class="item-icon-left"><i class="icon ion-ios-bookmarks"></i>被借次数<span class="item-note">{{book.times}}</span></ion-item></ion-list></ion-content></ion-view>

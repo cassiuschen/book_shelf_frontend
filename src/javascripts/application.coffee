@@ -2,7 +2,7 @@ window.ionicApp = angular.module 'BookShelf', [
 	'ionic'
 ]
 
-window.ApiBaseUrl = "http://lib.cassiuschen.me/api/"
+window.ApiBaseUrl = "http://lib.cassiuschen.me/api/"#"http://192.168.31.119:3000/api/"#"http://lib.cassiuschen.me/api/"
 
 window.ionicApp.config(["$httpProvider", (provider) ->
 	provider.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
@@ -11,6 +11,20 @@ window.ionicApp.config(["$httpProvider", (provider) ->
 	provider.defaults.headers.common['Access-Control-Allow-Headers'] = 'Content-Type, X-Requested-With'
 	#provider.defaults.headers.common['Content-Type'] = "application/json"
 ])
+window.ionicApp
+	.run [
+		'$rootScope',
+		'$http',
+		'$ionicLoading',
+		'$timeout',
+		($s, $http, $loading, $timeout) ->
+			$s.showLoading = (text = "加载中") ->
+				$loading.show
+					template: text
+
+			$s.hideLoading = ->
+				$loading.hide()
+	]
 
 window.ionicApp
 	.config ['$stateProvider', '$urlRouterProvider', ($state, $url) ->
@@ -30,7 +44,7 @@ window.ionicApp
 			}
 
 			.state 'tabs.detail', {
-				url: '/detail/:BookId'
+				url: '/home/detail/:BookId'
 				views:
 					'home-tab':
 						templateUrl: "../../detail.html"
