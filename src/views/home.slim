@@ -10,7 +10,7 @@ ion-view view-title="书架"
         button.button-clear ng-click="clearSearch()" 清空
     .card.list ng-repeat="book in books | filter: data.searchQuery"
       ion-item.item.item-avatar
-        img src="{{book.image}}"
+        img src="{{book.image}}" style="border-radius: 4px;"
         h2
           | 《{{book.title}}》
         p

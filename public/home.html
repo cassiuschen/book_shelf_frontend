@@ -1,6 +1,6 @@
 <ion-view view-title="书架"><ion-content><ion-refresher on-refresh="doRefresh()" pulling-icon="ion-arrow-down-c" pulling-text="下拉以更新数据" refreshing-icon="ion-load-c" refreshing-text="更新中..."></ion-refresher><ion-list><ion-item class="item-input-inset bar bar-header"><label class="item-input-wrapper"><i class="ion-ios7-search placeholder-icon"></i><input ng-model="data.searchQuery" placeholder="搜索..." type="text" /><i class="clear-search icon ion-ios7-close-empty" ng-click="clearSearch()"></i></label><button class="button-clear" ng-click="clearSearch()">清空</button></ion-item></ion-list>
     <div class="card list" ng-repeat="book in books | filter: data.searchQuery">
-      <ion-item class="item item-avatar"><img src="{{book.image}}" />
+      <ion-item class="item item-avatar"><img src="{{book.image}}" style="border-radius: 4px;" />
         <h2>
           《{{book.title}}》
         </h2>
