@@ -1,6 +1,6 @@
 window.ionicApp = angular.module('BookShelf', ['ionic']);
 
-window.ApiBaseUrl = "http://lib.cassiuschen.me/api/";
+window.ApiBaseUrl = "http://192.168.31.119:3000/api/";
 
 window.ionicApp.config([
   "$httpProvider", function(provider) {
@@ -46,6 +46,14 @@ window.ionicApp.config([
         'home-tab': {
           templateUrl: "../../detail.html",
           controller: "BookDetailController"
+        }
+      }
+    }).state('tabs.borrow', {
+      url: '/home/applicate/:BookId',
+      views: {
+        'home-tab': {
+          templateUrl: "../../application.html",
+          controller: 'BorrowController'
         }
       }
     }).state('tabs.about', {

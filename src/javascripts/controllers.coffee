@@ -49,8 +49,73 @@ window.ionicApp
 					$s.rating_down = [0...(5 - $s.rating)]
 					$s.hideLoading()
 					$s.$broadcast('scroll.refreshComplete')
+				.error ->
+					$rs.hideLoading()
+					$rs.showLoading("当前服务有问题，请稍后再试！")
+					$timeout ->
+							$rs.hideLoading()
+						,1000
 			$s.getInfo()
 			
+
+			return
+	]
+
+	.controller 'BorrowController', [
+		'$scope',
+		'$rootScope',
+		'$http',
+		'$ionicLoading',
+		'$timeout',
+		'$stateParams',
+		($s, $rs, $http, $loading, $timeout, $params) ->
+			$s.info = {}
+
+			$s.getTitle = ->
+				$rs.showLoading("请稍后...")
+				$http
+						method: 'GET'
+						url: "#{window.ApiBaseUrl}book.json"
+						params:
+							id: $params.BookId
+							attr: 'title'
+					.success (data) ->
+						$s.info.title = data.result
+						$rs.hideLoading()
+					.error ->
+						$rs.hideLoading()
+						$s.showLoading("当前网络有问题，请稍后再试！")
+						$timeout ->
+								$rs.hideLoading()
+							,1000
+			$s.getTitle()
+
+			$s.postApplication = ->
+				$rs.showLoading()
+				$http
+						method: "POST"
+						url: "#{window.ApiBaseUrl}borrow/#{$params.BookId}.json"
+						data:
+							borrow:
+								target: $s.info.name
+								phone: $s.info.phone
+					.success (data) ->
+						$rs.hideLoading()
+						if data.status == 200
+							$rs.showLoading("申请成功！")
+						else
+							$rs.showLoading("当前无法提交申请\n请稍后再试")
+						$timeout ->
+								$rs.hideLoading()
+							, 1000
+					.error ->
+						$rs.hideLoading()
+						$rs.showLoading("当前无法提交申请\n请稍后再试")
+						$timeout ->
+								$rs.hideLoading()
+							, 1000
+
+
 
 			return
 	]

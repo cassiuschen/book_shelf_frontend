@@ -1,0 +1,12 @@
+ion-view view-title="申请借阅"
+  ion-content
+    ion-list
+      .item
+        | 申请借阅《{{info.title}}》
+      .item-input.item
+        input type="text" placeholder="你的姓名" ng-model="info.name"
+      .item-input.item
+        input type="text" placeholder="你的电话" ng-model="info.phone"
+      .item
+        button.button.button-full.button-positive ng-click="postApplication()"
+          | 提交申请

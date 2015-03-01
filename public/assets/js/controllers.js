@@ -46,9 +46,69 @@ window.ionicApp.controller('HomeController', [
         }).apply(this);
         $s.hideLoading();
         return $s.$broadcast('scroll.refreshComplete');
+      }).error(function() {
+        $rs.hideLoading();
+        $rs.showLoading("当前服务有问题，请稍后再试！");
+        return $timeout(function() {
+          return $rs.hideLoading();
+        }, 1000);
       });
     };
     $s.getInfo();
+  }
+]).controller('BorrowController', [
+  '$scope', '$rootScope', '$http', '$ionicLoading', '$timeout', '$stateParams', function($s, $rs, $http, $loading, $timeout, $params) {
+    $s.info = {};
+    $s.getTitle = function() {
+      $rs.showLoading("请稍后...");
+      return $http({
+        method: 'GET',
+        url: window.ApiBaseUrl + "book.json",
+        params: {
+          id: $params.BookId,
+          attr: 'title'
+        }
+      }).success(function(data) {
+        $s.info.title = data.result;
+        return $rs.hideLoading();
+      }).error(function() {
+        $rs.hideLoading();
+        $s.showLoading("当前网络有问题，请稍后再试！");
+        return $timeout(function() {
+          return $rs.hideLoading();
+        }, 1000);
+      });
+    };
+    $s.getTitle();
+    $s.postApplication = function() {
+      $rs.showLoading();
+      return $http({
+        method: "POST",
+        url: window.ApiBaseUrl + "borrow/" + $params.BookId + ".json",
+        data: {
+          borrow: {
+            target: $s.info.name,
+            phone: $s.info.phone
+          }
+        }
+      }).success(function(data) {
+        $rs.hideLoading();
+        if (data.status === 200) {
+          $rs.showLoading("申请成功！");
+        } else {
+          $rs.showLoading("当前无法提交申请\n请稍后再试");
+        }
+        return $timeout(function() {
+          return $rs.hideLoading();
+        }, 1000);
+      }).error(function() {
+        $rs.hideLoading();
+        $rs.showLoading("当前无法提交申请\n请稍后再试");
+        return $timeout(function() {
+          return $rs.hideLoading();
+        }, 1000);
+      });
+    };
   }
 ]).controller('DoubanInfoController', ['$scope', '$http', '$stateParams', function($s, $http, $params) {}]).controller('AboutController', [
   '$scope', function($s) {

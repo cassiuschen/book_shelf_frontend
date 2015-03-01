@@ -1,0 +1,14 @@
+<ion-view view-title="申请借阅"><ion-content><ion-list>
+      <div class="item">
+        申请借阅《{{info.title}}》
+      </div>
+      <div class="item-input item">
+        <input ng-model="info.name" placeholder="你的姓名" type="text" />
+      </div>
+      <div class="item-input item">
+        <input ng-model="info.phone" placeholder="你的电话" type="text" />
+      </div>
+      <div class="item">
+        <button class="button button-full button-positive" ng-click="postApplication()">提交申请</button>
+      </div>
+    </ion-list></ion-content></ion-view>

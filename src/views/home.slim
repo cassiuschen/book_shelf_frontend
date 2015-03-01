@@ -32,8 +32,11 @@ ion-view view-title="书架"
         a.tab-item href="#/tab/douban/2"
           i.icon.ion-ios-chatboxes-outline
           |  查看评价
-        a.tab-item href="#/tab/app/2"
+        a.tab-item href="#/tab/home/applicate/{{book.isbn13}}" ng-if="book.can_borrow"
           i.icon.icon.ion-clipboard
           |  申请借阅
+        a.tab-item.assertive ng-if="!(book.can_borrow)"
+          i.icon.icon.ion-clipboard
+          |  已借出
 
 
