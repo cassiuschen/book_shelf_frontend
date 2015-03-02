@@ -17,7 +17,7 @@
         </p>
       </div>
       <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item" href="#/tab/home/detail/{{book.isbn13}}"><i class="icon ion-document-text"></i> 详细信息</a><a class="tab-item" href="#/tab/douban/2"><i class="icon ion-ios-chatboxes-outline"></i> 查看评价</a><a class="tab-item" href="#/tab/home/applicate/{{book.isbn13}}" ng-if="book.can_borrow"><i class="icon icon ion-clipboard"></i> 申请借阅</a><a class="tab-item assertive" ng-if="!(book.can_borrow)"><i class="icon icon ion-clipboard"></i> 已借出</a>
+        <a class="tab-item" href="#/tab/home/detail/{{book.isbn13}}"><i class="icon ion-document-text"></i> 详细信息</a><a class="tab-item" href="#/tab/home/applicate/{{book.isbn13}}" ng-if="book.can_borrow"><i class="icon icon ion-clipboard"></i> 申请借阅</a><a class="tab-item assertive" ng-if="!(book.can_borrow)"><i class="icon icon ion-clipboard"></i> 已借出</a>
       </div>
     </div>
   </ion-content></ion-view>

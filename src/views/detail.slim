@@ -14,12 +14,12 @@ ion-view view-title="详细信息"
           a style="margin-right:2px" ng-repeat="heart in rating_down"
             i.ion-ios-heart-outline.assertive
           |     
-      ion-item.item-icon-left
+      ion-item.item-icon-left ng-if="book.publisher"
         i.icon.ion-ios-people
         | 出版社
         span.item-note
           | {{book.publisher}}
-      ion-item.item-icon-left
+      ion-item.item-icon-left ng-if="book.pages"
         i.icon.ion-ios-book
         | 页数
         span.item-note
@@ -34,12 +34,12 @@ ion-view view-title="详细信息"
         | ISBN
         span.item-note
           | {{book.isbn13}}
-      ion-item.item-icon-left
+      ion-item.item-icon-left ng-if="book.pubdate"
         i.icon.ion-ios-clock
         | 出版日期
         span.item-note
           | {{book.pubdate}}
-      ion-item.item-icon-left
+      ion-item.item-icon-left ng-if="book.price"
         i.icon.ion-cash
         | 定价
         span.item-note
